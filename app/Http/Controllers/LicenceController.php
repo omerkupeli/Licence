@@ -40,7 +40,7 @@ class LicenceController extends Controller
         $licence->isim = $name;
         $licence->soyisim = $surname;
         $licence->email = $email;
-        $licence->alıştarihi = $purchaseDate;
+        $licence->aliştarihi = $purchaseDate;
         $licence->süre = $duration;
         $licence->bitiştarihi = $endDate;
 
