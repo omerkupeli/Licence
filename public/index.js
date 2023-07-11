@@ -35,7 +35,7 @@ function loadTable() {
   loadTable();
   function showUserCreateBox() {
     Swal.fire({
-      title: "Create user",
+      title: "EKLE",
       html:
     '<form id="registrationForm" method="POST" action="{{ route("createLicence") }}">' +
     '@csrf' +

@@ -24,7 +24,7 @@
       <div class="d-flex bd-highlight mb-3">
         <div class="me-auto p-2 bd-highlight"><h2>Lisanslarım</div>
         <div class="p-2 bd-highlight">
-          <button type="button" class="btn btn-secondary" onclick="showUserCreateBox()">Create</button>
+          <button type="button" class="btn btn-secondary" onclick="showUserCreateBox()">EKLE</button>
         </div>
       </div>
 
