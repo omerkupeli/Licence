@@ -16,9 +16,9 @@ class LicenceController extends Controller
 
     public function createLicence(Request $request){
         $licence = new Licence();
-        $licence->licence_name = $request->licence_name;
-        $licence->name = $request->name;
-        $licence->surname = $request->surname;
+        $licence->lisansadi = $request->licence_name;
+        $licence->isim = $request->name;
+        $licence->soyisim = $request->surname;
         $licence->email = $request->email;
         $licence->purchase_date = $request->purchase_date;
         $licence->save();
@@ -40,7 +40,7 @@ class LicenceController extends Controller
         $licence->isim = $name;
         $licence->soyisim = $surname;
         $licence->email = $email;
-        $licence->alıştarihi = $purchaseDate;
+        $licence->aliştarihi = $purchaseDate;
         $licence->süre = $duration;
         $licence->bitiştarihi = $endDate;
 
