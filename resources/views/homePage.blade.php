@@ -52,7 +52,7 @@
               <td>{{$licence->isim}}</td>
               <td>{{$licence->soyisim}}</td>
               <td>{{$licence->email}}</td>
-              <td>{{$licence->alıştarihi}}</td>
+              <td>{{$licence->aliştarihi}}</td>
               <td>{{$licence->bitiştarihi}}</td>
               <td>{{$licence->süre}}</td>
               <th scope="row" colspan="5"></th>
