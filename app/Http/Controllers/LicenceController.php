@@ -32,13 +32,18 @@ class LicenceController extends Controller
         $surname = $request->input('surname');
         $email = $request->input('email');
         $purchaseDate = $request->input('purchase_date');
+        $duration = $request->input('duration');
+        $endDate = $request->input('end_date');
 
         $licence = new Licence();
-        $licence->licence_name = $licenceName;
-        $licence->name = $name;
-        $licence->surname = $surname;
+        $licence->lisansadi = $licenceName;
+        $licence->isim = $name;
+        $licence->soyisim = $surname;
         $licence->email = $email;
-        $licence->purchase_date = $purchaseDate;
+        $licence->alıştarihi = $purchaseDate;
+        $licence->süre = $duration;
+        $licence->bitiştarihi = $endDate;
+
 
         $licence->save();
         return redirect('/home');
