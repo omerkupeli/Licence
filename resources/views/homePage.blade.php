@@ -36,7 +36,7 @@
               <th scope="col">Lisans Adı</th>
               <th scope="col">Ad</th>
               <th scope="col">Soyad</th>
-              <th scope="col">Kullanıcı Adı</th>
+              <th scope="col">Email</th>
               <th scope="col">Başlangıç</th>
               <th scope="col">Bitiş</th>
               <th scope="col">Süre</th>
@@ -53,8 +53,8 @@
               <td>{{$licence->soyisim}}</td>
               <td>{{$licence->email}}</td>
               <td>{{$licence->alıştarihi}}</td>
-              <td>{{$licence->süre}}</td>
               <td>{{$licence->bitiştarihi}}</td>
+              <td>{{$licence->süre}}</td>
               <th scope="row" colspan="5"></th>
             </tr>
             @endforeach
