@@ -45,6 +45,7 @@
             </tr>
           </thead>
           <tbody id="mytable">
+            @foreach($licences as $licence)
             <tr>
               <th scope="row">{{$licence->id}}</th>
               <td>{{$licence->lisansadi}}</td>
@@ -56,6 +57,7 @@
               <td>{{$licence->bitiştarihi}}</td>
               <th scope="row" colspan="5"></th>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
