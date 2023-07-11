@@ -46,13 +46,13 @@
             @foreach($licences as $licence)
             <tr>
               <th scope="row">{{$licence->id}}</th>
-              <td>{{$licence->licence_name}}</td>
-              <td>{{$licence->name}}</td>
-              <td>{{$licence->surname}}</td>
+              <td>{{$licence->lisansadi}}</td>
+              <td>{{$licence->isim}}</td>
+              <td>{{$licence->soyisim}}</td>
               <td>{{$licence->email}}</td>
-              <td>{{$licence->purchase_date}}</td>
-              <td>{{$licence->duration}}</td>
-              <td>{{$licence->end_date}}</td>
+              <td>{{$licence->alıştarihi}}</td>
+              <td>{{$licence->süre}}</td>
+              <td>{{$licence->bitiştarihi}}</td>
             </tr>
             @endforeach
 
