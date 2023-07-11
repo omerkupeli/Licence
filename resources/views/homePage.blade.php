@@ -46,6 +46,14 @@
           </thead>
           <tbody id="mytable">
             <tr>
+              <th scope="row">{{$licence->id}}</th>
+              <td>{{$licence->lisansadi}}</td>
+              <td>{{$licence->isim}}</td>
+              <td>{{$licence->soyisim}}</td>
+              <td>{{$licence->email}}</td>
+              <td>{{$licence->alıştarihi}}</td>
+              <td>{{$licence->süre}}</td>
+              <td>{{$licence->bitiştarihi}}</td>
               <th scope="row" colspan="5"></th>
             </tr>
           </tbody>
