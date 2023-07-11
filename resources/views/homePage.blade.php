@@ -70,6 +70,8 @@
       <input id="surname" class="swal2-input" placeholder="Soyisim" name="surname"> 
       <input id="email" class="swal2-input" placeholder="Email" name="email"> 
       <input id="purchase_date" class="swal2-input" placeholder="Alış Tarihi" name="purchase_date"> 
+      <input id="duration" class="swal2-input" placeholder="Süre" name="duration">
+      <input id="end_date" class="swal2-input" placeholder="Bitiş Tarihi" name="end_date">
       
       <button type="submit">Kayıt</button> 
       </form>
