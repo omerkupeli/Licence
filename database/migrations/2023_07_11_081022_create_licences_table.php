@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('licences', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('licence_name');
-            $table->string('name');
-            $table->string('surname');
+            $table->string('lisansadi');
+            $table->string('isim');
+            $table->string('soyisim');
             $table->string('email');
-            $table->integer('purchase_date');
+            $table->date('aliştarihi');
+            $table->integer('süre');
+            $table->date('bitiştarihi');
+            $table->timestamps();
 
         });
     }
