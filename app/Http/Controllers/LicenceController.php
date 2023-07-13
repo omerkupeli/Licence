@@ -67,4 +67,10 @@ class LicenceController extends Controller
         $licence->save();
         return redirect('/home');
     }
+
+
+    public function editLicence($id){
+        $licence = Licence::find($id);
+        return view('editLicence', ['licence' => $licence]);
+    }
 }
