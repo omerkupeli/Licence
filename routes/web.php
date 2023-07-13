@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+Route::get('/kayıt', function () {
+    return view('kayıt');
 });
 
 
@@ -31,5 +34,7 @@ Route::delete('/licence/delete/{id}', 'App\Http\Controllers\LicenceController@de
 
 //licence.update
 Route::put('/licence/update/{id}', 'App\Http\Controllers\LicenceController@updateLicence')->name('licence.update');
+
+
 
 
