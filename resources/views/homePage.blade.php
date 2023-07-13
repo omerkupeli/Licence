@@ -45,8 +45,11 @@
     </thead>
     <tbody id="mytable">
       @foreach($licences as $licence)
+        <?php
+          $sıra = $loop->index + 1;
+        ?>
       <tr>
-  <th scope="row">{{$licence->id}}</th>
+  <th scope="row">{{$sıra}}</th>
   <td>{{$licence->lisansadi}}</td>
   <td>{{$licence->isim}}</td>
   <td>{{$licence->soyisim}}</td>
