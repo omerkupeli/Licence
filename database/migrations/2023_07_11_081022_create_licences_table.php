@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('lisansadi');
             $table->string('isim');
-            $table->string('soyisim');
             $table->string('email');
             $table->date('aliştarihi');
             $table->integer('süre');

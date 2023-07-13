@@ -48,29 +48,46 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Lisans Adı</th>
-        <th scope="col">Ad</th>
-        <th scope="col">Soyad</th>
+        <th scope="col">İsim</th>
         <th scope="col">Email</th>
         <th scope="col">Başlangıç</th>
         <th scope="col">Bitiş</th>
         <th scope="col">Süre</th>
+        <th scope="col">Kalan Süre</th>
+        
         <th scope="col">Durum</th>
       </tr>
     </thead>
     <tbody id="mytable">
+      
       @foreach($licences as $licence)
         <?php
           $sıra = $loop->index + 1;
+          $kalansüre = strtotime($licence->bitiştarihi) - strtotime('now');
+          $toplamSure =$licence->süre;
+          if ($toplamSure <30)
+          {
+            $toplamSure = $toplamSure." Gün";
+          }
+          else if ($toplamSure <365)
+          {
+            $toplamSure = floor($toplamSure / 30)." Ay";
+          }
         ?>
       <tr>
   <th scope="row">{{$sıra}}</th>
   <td>{{$licence->lisansadi}}</td>
   <td>{{$licence->isim}}</td>
-  <td>{{$licence->soyisim}}</td>
   <td>{{$licence->email}}</td>
   <td>{{$licence->aliştarihi}}</td>
   <td>{{$licence->bitiştarihi}}</td>
-  <td>{{$licence->süre}}</td>
+  <td>{{$toplamSure}} </td>
+  <td>
+    @if($kalansüre < 0)
+      <span style="color: red;">Süre Doldu</span>
+    @else
+      <span style="color: green;">{{floor($kalansüre / 86400)}} Gün</span>
+    @endif
   <td>
     <div style="display: flex; align-items: center;">
       @if(strtotime($licence->bitiştarihi) < strtotime('now'))
@@ -97,19 +114,18 @@
   </table>
 </div>
 
-    </div>
+    
     <form id="registrationForm" method="POST"  action="/createLicence"> 
       @csrf 
       <input id="id" type="hidden" name="id"> 
       <input id="licence_name" class="swal2-input" placeholder="Lisans Adı" name="licence_name"> 
-      <input id="name" class="swal2-input" placeholder="İsim" name="name"> 
+      <!-- <input id="name" class="swal2-input" placeholder="İsim" name="name"> 
       <input id="surname" class="swal2-input" placeholder="Soyisim" name="surname"> 
-      <input id="email" class="swal2-input" placeholder="Email" name="email"> 
-      <input id="purchase_date" class="swal2-input" placeholder="Alış Tarihi" name="purchase_date"> 
-      <input id="duration" class="swal2-input" placeholder="Süre" name="duration">
+      <input id="email" class="swal2-input" placeholder="Email" name="email">  -->
+      <input id="purchase_date" class="swal2-input" placeholder="Alış Tarihi" name="purchase_date">
       <input id="end_date" class="swal2-input" placeholder="Bitiş Tarihi" name="end_date">
       
-      <button type="submit">Kayıt</button> 
+      <button type="submit">Kaydet</button> 
       </form>
 
     <script src="index.js"></script>

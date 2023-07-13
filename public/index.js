@@ -36,18 +36,47 @@ loadTable();
 
 function showUserCreateBox() {
   Swal.fire({
-    title: "Ekle",
-    html:
-      '<input id="id" type="hidden">' +
-      '<input id="fname" class="swal2-input" placeholder="Ad">' +
-      '<input id="lname" class="swal2-input" placeholder="Soyad">' +
-      '<input id="username" class="swal2-input" placeholder="Kullanıcı Adı">' +
-      '<input id="email" class="swal2-input" placeholder="Email">',
-    focusConfirm: false,
+    title: "Formu Doldurun",
+    html: `
+      <form id="registrationForm" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input id="id" type="hidden" name="id"> 
+        <input id="licence_name" class="swal2-input" placeholder="Lisans Adı" name="licence_name"> 
+        <input id="name" class="swal2-input" placeholder="İsim" name="name"> 
+        <input id="surname" class="swal2-input" placeholder="Soyisim" name="surname"> 
+        <input id="email" class="swal2-input" placeholder="Email" name="email"> 
+        <input id="purchase_date" class="swal2-input" placeholder="Alış Tarihi" name="purchase_date"> 
+        <input id="duration" class="swal2-input" placeholder="Süre" name="duration">
+        <input id="end_date" class="swal2-input" placeholder="Bitiş Tarihi" name="end_date">
+        
+        <button type="submit">Kayıt</button> 
+      </form>
+    `,
+    showCancelButton: false,
     preConfirm: () => {
-      userCreate();
-    },
+      const form = document.getElementById("registrationForm");
+      const formData = new FormData(form);
+  
+      return fetch(form.action, {
+        method: form.method,
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          Swal.fire(data.message);
+        })
+        .catch(error => {
+          Swal.fire("Bir hata oluştu.");
+        });
+    }
+  }).then(result => {
+    if (result.isConfirmed) {
+      window.location.href = "/createLicence";
+    }
   });
+  
+  
+  
 }
 
 function KayitEkle() {
