@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('aliştarihi');
             $table->integer('süre');
             $table->date('bitiştarihi');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
         });
