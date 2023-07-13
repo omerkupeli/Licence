@@ -48,4 +48,23 @@ class LicenceController extends Controller
         $licence->save();
         return redirect('/home');
     }
+
+    public function deleteLicence($id){
+        $licence = Licence::find($id);
+        $licence->delete();
+        return redirect('/home');
+    }
+
+    public function updateLicence(Request $request){
+        $licence = Licence::find($request->id);
+        $licence->lisansadi = $request->licence_name;
+        $licence->isim = $request->name;
+        $licence->soyisim = $request->surname;
+        $licence->email = $request->email;
+        $licence->aliştarihi = $request->purchase_date;
+        $licence->süre = $request->duration;
+        $licence->bitiştarihi = $request->end_date;
+        $licence->save();
+        return redirect('/home');
+    }
 }

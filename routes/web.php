@@ -22,3 +22,11 @@ Route::get('/', function () {
 Route::get('/home', 'App\Http\Controllers\LicenceController@getLicences');
 
 Route::post('/createLicence', 'App\Http\Controllers\LicenceController@store')->name('licence.store');
+
+//licence.edit
+Route::get('/licence/edit/{id}', 'App\Http\Controllers\LicenceController@updateLicence')->name('licence.edit');
+
+//licence.delete
+Route::delete('/licence/delete/{id}', 'App\Http\Controllers\LicenceController@deleteLicence')->name('licence.delete');
+
+
