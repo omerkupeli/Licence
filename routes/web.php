@@ -25,6 +25,9 @@ Route::POST('/kayıt','App\Http\Controllers\Auth\RegisterController@validate_reg
 
 Route::POST('/login', 'App\Http\Controllers\Auth\LoginController@validate_login')->name('login');
 
+Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+
 
 Route::get('/home', 'App\Http\Controllers\LicenceController@getLicences');
 

@@ -18,12 +18,19 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Lisans</a>
     @auth
-      <span class="navbar-text ms-auto">
-        <strong>{{ Auth::user()->name }}</strong>
-      </span>
+      <div class="d-flex align-items-center">
+        <span class="navbar-text me-3">
+          Hoş geldin, {{ Auth::user()->name }}
+        </span>
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-link text-white">Çıkış Yap</button>
+        </form>
+      </div>
     @endauth
   </div>
 </nav>
+
 
 
 
