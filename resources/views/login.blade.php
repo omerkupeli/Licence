@@ -12,7 +12,7 @@
   
     <form class="giris-from"  method="POST" action="{{ route('login') }}">
       @csrf
-      <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Emil"/>
+      <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Email"/>
       <input id="password" type="password" name="password" value="{{ old('password') }}" placeholder="Şifreniz"/>
       <button type="submit">Giriş Yap</button>
       <p class="mesaj">Üye Değil Misin ? <a href="/kayıt">Hesap Oluştur</a></p>
