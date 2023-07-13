@@ -29,38 +29,49 @@
       </div>
 
       <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Lisans Adı</th>
-              <th scope="col">Ad</th>
-              <th scope="col">Soyad</th>
-              <th scope="col">Email</th>
-              <th scope="col">Başlangıç</th>
-              <th scope="col">Bitiş</th>
-              <th scope="col">Süre</th>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Lisans Adı</th>
+        <th scope="col">Ad</th>
+        <th scope="col">Soyad</th>
+        <th scope="col">Email</th>
+        <th scope="col">Başlangıç</th>
+        <th scope="col">Bitiş</th>
+        <th scope="col">Süre</th>
+        <th scope="col">Durum</th>
+      </tr>
+    </thead>
+    <tbody id="mytable">
+      @foreach($licences as $licence)
+      <tr>
+        <th scope="row">{{$licence->id}}</th>
+        <td>{{$licence->lisansadi}}</td>
+        <td>{{$licence->isim}}</td>
+        <td>{{$licence->soyisim}}</td>
+        <td>{{$licence->email}}</td>
+        <td>{{$licence->aliştarihi}}</td>
+        <td>{{$licence->bitiştarihi}}</td>
+        <td>{{$licence->süre}}</td>
+        <td>
+  <div style="display: flex; align-items: center;">
+    @if(strtotime($licence->bitiştarihi) < strtotime('now'))
+      <div style="background-color: red; width: 20px; height: 20px; border-radius: 50%;"></div>
+      <span style="margin-left: 5px;">Pasif</span>
+    @else
+      <div style="background-color: green; width: 20px; height: 20px; border-radius: 50%;"></div>
+      <span style="margin-left: 5px;">Aktif</span>
+    @endif
+  </div>
+</td>
 
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
 
-            </tr>
-          </thead>
-          <tbody id="mytable">
-            @foreach($licences as $licence)
-            <tr>
-              <th scope="row">{{$licence->id}}</th>
-              <td>{{$licence->lisansadi}}</td>
-              <td>{{$licence->isim}}</td>
-              <td>{{$licence->soyisim}}</td>
-              <td>{{$licence->email}}</td>
-              <td>{{$licence->aliştarihi}}</td>
-              <td>{{$licence->bitiştarihi}}</td>
-              <td>{{$licence->süre}}</td>
-              <th scope="row" colspan="5"></th>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
     </div>
     <form id="registrationForm" method="POST"  action="/createLicence"> 
       @csrf 
