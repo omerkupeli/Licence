@@ -9,12 +9,13 @@
 </body>
 <div class="giris">
   <div class="form">
-  <form class="giris-from">
-      <input type="text" placeholder="Adınız"/>
-      <input type="text" placeholder="Email"/>
-      <input type="password" placeholder="Şifreniz"/>
-      <button>Kayıt ol</button>
-      <p class="mesaj">Üye Değil Misin ? <a href="#">Hesap Oluştur</a></p>
+  <form class="giris-from"  method="POST" action="{{ route('register')}}">
+    @csrf
+      <input type="text" name="name" value="{{ old('name') }}" placeholder="Adınız"/>
+      <input type="email" name="email" value="{{ old('email') }}" placeholder="Email"/>
+      <input type="password" name="password" value="{{ old('password') }}" placeholder="Şifreniz"/>
+      <button type="submit">Kayıt ol</button>
+      <p class="mesaj">Üye Misin ? <a href="/login">Giriş Yap</a></p>
     </form>
 
   </div>

@@ -14,11 +14,18 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-dark bg-mynav">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Lisans</a>
-      </div>
-    </nav>
+  <nav class="navbar navbar-dark bg-mynav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Lisans</a>
+    @auth
+      <span class="navbar-text ms-auto">
+        <strong>{{ Auth::user()->name }}</strong>
+      </span>
+    @endauth
+  </div>
+</nav>
+
+
 
     <div class="container">
       <div class="d-flex bd-highlight mb-3">
