@@ -67,7 +67,7 @@
           $toplamSure =$licence->süre;
           if ($toplamSure <30)
           {
-            $toplamSure = $toplamSure." Gün";
+            $toplamSure = $toplamSure." Ay";
           }
           else if ($toplamSure <365)
           {
