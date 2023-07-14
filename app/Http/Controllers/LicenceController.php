@@ -32,7 +32,7 @@ public function store(Request $request)
     $licence = new Licence();
     $licence->lisansadi = $request->licence_name;
     $licence->isim = $user->name;
-    $licence->email = $user->email;
+    $licence->email = $request->email;
     $licence->aliştarihi = Carbon::parse($request->purchase_date);
     $licence->bitiştarihi = Carbon::parse($request->end_date);
 
@@ -59,7 +59,7 @@ public function store(Request $request)
         $licence = Licence::find($request->id);
         $licence->lisansadi = $request->licence_name;
         $licence->isim = $user->name;
-        $licence->email = $user->email;
+        $licence->email = $request->email;
         $licence->aliştarihi = $request->purchase_date;
         $licence->süre = $request->duration;
         $licence->bitiştarihi = $request->end_date;
