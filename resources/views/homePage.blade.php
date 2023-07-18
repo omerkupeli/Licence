@@ -124,11 +124,10 @@
         <div class="form-group">
           <label for="purchase_date">Alış Tarihi</label>
           <input id="purchase_date" class="form-control" type="date" name="purchase_date" required>
-        </div>
-        <div class="form-group">
-          <label for="end_date">Bitiş Tarihi</label>
-          <input id="end_date" class="form-control" type="date" name="end_date" required>
-        </div>
+          </div><div class="form-group">
+          <label for="end_date">Süre (Ay)</label>
+          <input id="end_date" class="form-control" type="text" name="end_date" required>
+        </div>  
       </div>
       <button type="submit" class="btn2">Kaydet</button>
     </form>
