@@ -26,6 +26,10 @@ Route::POST('/kayıt','App\Http\Controllers\Auth\RegisterController@validate_reg
 Route::POST('/login', 'App\Http\Controllers\Auth\LoginController@validate_login')->name('login');
 
 Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+use App\Http\Controllers\MailController;
+
+Route::post('/send-welcome-email', [MailController::class, 'sendWelcomeEmail']);
+
 
 
 

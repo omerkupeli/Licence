@@ -124,6 +124,15 @@
       <button type="submit" class="btn2">Kaydet</button>
     </form>
   </div>
+  <!-- send email -->
+  <div class="container">
+    <h2>Email Gönder</h2>
+    <form id="sendEmailForm" method="POST" action="/send-welcome-email">
+      @csrf
+      
+      <button type="submit" class="btn2">Gönder</button>
+    </form>
+
 
   <script src="index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
