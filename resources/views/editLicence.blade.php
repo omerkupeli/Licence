@@ -44,6 +44,10 @@
       <input type="text" id="licence_name" name="licence_name" value="{{$licence->lisansadi}}">
     </div>
     <div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" value="{{$licence->email}}">
+    </div>
+    <div>
       <label for="purchase_date">Alış Tarihi:</label>
       <input type="date" id="purchase_date" name="purchase_date" value="{{$licence->aliştarihi}}">
     </div>
