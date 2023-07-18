@@ -33,11 +33,14 @@ public function store(Request $request)
     $licence->lisansadi = $request->licence_name;
     $licence->isim = $user->name;
     $licence->email = $request->email;
-    $licence->aliştarihi = Carbon::parse($request->purchase_date);
-    $licence->bitiştarihi = Carbon::parse($request->end_date);
+    $licence->aliştarihi = $request->purchase_date;
+    $licence->süre =$request->duration;
+    $bitisTarihi = Carbon::parse($request->purchase_date)->addMonths($request->duration);
+
+    $licence->bitiştarihi = $bitisTarihi;
 
     // Süre hesaplamasını gün cinsinden yapmak için diffInDays() kullanın
-    $licence->süre = $licence->aliştarihi->diffInDays($licence->bitiştarihi);
+   
 
     $licence->user_id = $user->id;
 

@@ -41,7 +41,7 @@
           <th scope="col">Email</th>
           <th scope="col">Başlangıç</th>
           <th scope="col">Bitiş</th>
-          <th scope="col">Süre</th>
+          <th scope="col">Süre (Ay)</th>
           <th scope="col">Kalan Süre</th>
           <th scope="col">Durum</th>
           <th scope="col">Düzenle/Sil</th>
@@ -52,15 +52,7 @@
           <?php
             $sıra = $loop->index + 1;
             $kalansüre = strtotime($licence->bitiştarihi) - strtotime('now');
-            $toplamSure =$licence->süre;
-            if ($toplamSure <30)
-            {
-              $toplamSure = $toplamSure." Gün";
-            }
-            else if ($toplamSure <365)
-            {
-              $toplamSure = floor($toplamSure / 30)." Ay";
-            }
+            
           ?>
           <tr>
             <th scope="row">{{$sıra}}</th>
@@ -69,7 +61,7 @@
             <td>{{$licence->email}}</td>
             <td>{{$licence->aliştarihi}}</td>
             <td>{{$licence->bitiştarihi}}</td>
-            <td>{{$toplamSure}}</td>
+            <td>{{$licence->süre}}</td>
             <td>
               @if($kalansüre < 0)
                 <span style="color: red;">Süre Doldu</span>
@@ -125,8 +117,8 @@
           <label for="purchase_date">Alış Tarihi</label>
           <input id="purchase_date" class="form-control" type="date" name="purchase_date" required>
           </div><div class="form-group">
-          <label for="end_date">Süre (Ay)</label>
-          <input id="end_date" class="form-control" type="text" name="end_date" required>
+          <label for="duration">Süre (Ay)</label>
+          <input id="duration" class="form-control" type="text" name="duration" required>
         </div>  
       </div>
       <button type="submit" class="btn2">Kaydet</button>
