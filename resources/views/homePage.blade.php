@@ -17,14 +17,16 @@
   <nav class="navbar navbar-dark bg-mynav">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Lisans</a>
+      
       @auth
         <div class="d-flex align-items-center">
+        <button class= "btn btn-link text-white" >Ayarlar</button>
           <span class="navbar-text me-3">
-            Hoş geldin, {{ Auth::user()->name }}
+            Hoşgeldin, {{ Auth::user()->name }}
           </span>
           <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-link text-white">Çıkış Yap</button>
+            <button type="submit" class="btn btn-link text-white">Çıkış</button>
           </form>
         </div>
       @endauth
