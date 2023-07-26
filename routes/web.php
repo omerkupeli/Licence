@@ -12,9 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/admin', function () {
-    return view('admin');
-});
+
+//userController getAllUsers
+
+Route::get('/admin', 'App\Http\Controllers\UserController@getAllUsers')->name('admin');
+
+//userController setUserRole
+Route::post('setUserRole', 'App\Http\Controllers\UserController@setUserRole')->name('setUserRole');
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -32,11 +37,9 @@ use App\Http\Controllers\MailController;
 
 Route::post('/send-welcome-email', [MailController::class, 'sendWelcomeEmail']);
 
+Route::get('/home','App\Http\Controllers\LicenceController@showLicencesTable');
 
-
-
-Route::get('/home', 'App\Http\Controllers\LicenceController@getLicences');
-
+ 
 Route::post('/createLicence', 'App\Http\Controllers\LicenceController@store')->name('licence.store');
 
 //licence.edit

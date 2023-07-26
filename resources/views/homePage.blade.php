@@ -20,7 +20,10 @@
       
       @auth
         <div class="d-flex align-items-center">
-        <button class= "btn btn-link text-white" >Ayarlar</button>
+        @if(Auth::user()->role === 'admin')
+    <button class="btn btn-link text-white">Ayarlar</button>
+@endif
+ 
           <span class="navbar-text me-3">
             Hoşgeldin, {{ Auth::user()->name }}
           </span>

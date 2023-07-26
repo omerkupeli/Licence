@@ -230,11 +230,13 @@
       <h2>Dashboard</h2>
       <div class="widget">
         <h3>Toplam Kullanıcı Sayısı</h3>
-        <p class="widget-data">3</p>
+        <?php $userCount = DB::table('users')->count(); ?>
+        <p class="widget-data">{{$userCount}}</p>
       </div>
       <div class="widget">
         <h3>Toplam Yönetici Sayısı</h3>
-        <p class="widget-data">1</p>
+        <?php $adminCount = DB::table('users')->where('role', 'admin')->count(); ?>
+        <p class="widget-data">{{$adminCount}}</p>
       </div>
       <div class="widget">
         <h3>Günlük Ziyaretçi Sayısı</h3>
@@ -256,28 +258,41 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>John Doe</td>
-            <td>john@example.com</td>
-            <td>
-              <span class="user-role admin">Admin</span>
-            </td>
-            <td>
-              <button class="change-role-btn admin">Kullanıcı Yap</button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jane Smith</td>
-            <td>jane@example.com</td>
-            <td>
-              <span class="user-role user">Kullanıcı</span>
-            </td>
-            <td>
-              <button class="change-role-btn user">Admin Yap</button>
-            </td>
-          </tr>
+        @foreach($users as $user)
+  <tr>
+    <td>{{$user->id}}</td>
+    <td>{{$user->name}}</td>
+    <td>{{$user->email}}</td>
+    <td>
+      @if($user->role === 'admin')
+        <span class="user-role admin">Admin</span>
+      @else
+        <span class="user-role">Kullanıcı</span>
+      @endif
+    </td>
+    <td>
+    @if($user->role === 'admin')
+        <form action="{{ route('setUserRole') }}" method="POST" style="display: inline;">
+            @csrf
+            <input type="hidden" name="id" value="{{ $user->id }}">
+            <input type="hidden" name="role" value="user">
+            <button type="submit" class="change-role-btn admin" style="background-color: red; color: white;">Kullanıcı Yap</button>
+        </form>
+    @else
+        <form action="{{ route('setUserRole') }}" method="POST" style="display: inline;">
+            @csrf
+            <input type="hidden" name="id" value="{{ $user->id }}">
+            <input type="hidden" name="role" value="admin">
+            <button type="submit" class="change-role-btn" style="background-color: green; color: white;">Admin Yap</button>
+        </form>
+    @endif
+</td>
+
+@endforeach
+
+
+
+
           <!-- Diğer kullanıcılar için benzer satırlar ekleyebilirsiniz -->
         </tbody>
       </table>
