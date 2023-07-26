@@ -37,7 +37,7 @@ use App\Http\Controllers\MailController;
 
 Route::post('/send-welcome-email', [MailController::class, 'sendWelcomeEmail']);
 
-Route::get('/home','App\Http\Controllers\LicenceController@showLicencesTable');
+Route::get('/home','App\Http\Controllers\LicenceController@getLicences');
 
  
 Route::post('/createLicence', 'App\Http\Controllers\LicenceController@store')->name('licence.store');

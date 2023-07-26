@@ -21,7 +21,7 @@
       @auth
         <div class="d-flex align-items-center">
         @if(Auth::user()->role === 'admin')
-    <button class="btn btn-link text-white">Ayarlar</button>
+   <a href="{{ route('admin') }}"> <button class="btn btn-link text-white">Ayarlar</button></a>
 @endif
  
           <span class="navbar-text me-3">
