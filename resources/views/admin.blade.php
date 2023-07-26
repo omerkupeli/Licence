@@ -247,6 +247,7 @@
     <!-- Kullanıcıları düzenleme alanı -->
     <section id="users">
       <h2>Users</h2>
+      <div class="user-table-container">
       <table class="user-table">
         <thead>
           <tr>
@@ -301,7 +302,9 @@
     <!-- Ürünleri düzenleme alanı -->
     <section id="products">
       <h2>Products</h2>
+      <a href="{{ route('values.create') }}">
       <button id="add-product-btn" class="add-btn">Ekle</button>
+      </a>
       <table class="product-table">
         <thead>
           <tr>
@@ -314,21 +317,45 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($columns as $column)
           <tr>
             
-         
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <td>{{$column->id}}</td>
+            <td>{{$column->name}}</td>
+            <td>{{$column->type}}</td>
+            <td>{{$column->length}}</td>
+            
             <td>
               <button class="edit-btn">Düzenle</button>
-              <button class="delete-btn">Sil</button>
+              <form action="{{ route('column.delete', $column->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            
+            <button  type="submit" class="delete-btn">Sil</button>
+        </form>
+              
             </td>
           </tr>
+          @endforeach
           <!-- Diğer ürünler için benzer satırlar ekleyebilirsiniz -->
         </tbody>
       </table>
+      <form action="{{ route('values.store') }}" method="POST">
+    @csrf
+    <label for="value">Value:</label>
+    <input type="text" name="value" required>
+
+    <label for="rowNumber">Row Number:</label>
+    <input type="number" name="rowNumber" required>
+
+    <label for="column_id">Column ID:</label>
+    <input type="number" name="column_id" required>
+
+    <button type="submit">Veri Oluştur</button>
+</form>
+
+</div>
+
     </section>
   </main>
 </body>
