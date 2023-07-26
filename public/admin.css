@@ -109,13 +109,13 @@
   }
   
   .admin {
-    background-color: #f44336;
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
   }
   
   .user {
     background-color: #4caf50;
-    color: #fff;
+    color: #000;
   }
   
   .change-role-btn {

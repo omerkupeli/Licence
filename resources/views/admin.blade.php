@@ -124,13 +124,13 @@
     }
 
     .admin {
-      background-color: #f44336;
-      color: #fff;
+      background-color: #f2f2f2;
+      color: #000;
     }
 
     .user {
-      background-color: #4caf50;
-      color: #fff;
+      background-color: #f2f2f2;
+      color: #000;
     }
 
     .change-role-btn {
@@ -230,15 +230,15 @@
       <h2>Dashboard</h2>
       <div class="widget">
         <h3>Toplam Kullanıcı Sayısı</h3>
-        <p class="widget-data">150</p>
+        <p class="widget-data">3</p>
       </div>
       <div class="widget">
-        <h3>Toplam Ürün Sayısı</h3>
-        <p class="widget-data">300</p>
+        <h3>Toplam Yönetici Sayısı</h3>
+        <p class="widget-data">1</p>
       </div>
       <div class="widget">
         <h3>Günlük Ziyaretçi Sayısı</h3>
-        <p class="widget-data">5000</p>
+        <p class="widget-data">3</p>
       </div>
     </section>
 
