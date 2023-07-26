@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Columns;
+use App\Models\Values;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreColumnsRequest;
-use App\Http\Requests\UpdateColumnsRequest;
+use App\Http\Requests\StoreValuesRequest;
+use App\Http\Requests\UpdateValuesRequest;
 use Illuminate\Http\Request;
 
-class ColumnsController extends Controller
+
+class ValuesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,9 @@ class ColumnsController extends Controller
      */
     public function index()
     {
-        //
+        $values = Values::all();
+
+        return view('index', compact('values'));
     }
 
     /**
@@ -33,35 +36,35 @@ class ColumnsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreColumnsRequest  $request
+     * @param  \App\Http\Requests\StoreValuesRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'type' => 'required|string',
-            'length' => 'required|integer',
+            'value' => 'required|string',
+            'rowNumber' => 'required|integer',
+            'column_id' => 'required|integer',
         ]);
 
-        $value = new Columns([
-            'name' => $request->input('name'),
-            'type' => $request->input('type'),
-            'length' => $request->input('length'),
+        $value = new Values([
+            'value' => $request->input('value'),
+            'rowNumber' => $request->input('rowNumber'),
+            'column_id' => $request->input('column_id'),
         ]);
 
         $value->save();
 
-        return redirect()->route('admin')->with('success', 'Veri başarıyla oluşturuldu.');
+        return redirect()->route('values.index')->with('success', 'Veri başarıyla oluşturuldu.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Columns  $columns
+     * @param  \App\Models\Values  $values
      * @return \Illuminate\Http\Response
      */
-    public function show(Columns $columns)
+    public function show(Values $values)
     {
         //
     }
@@ -69,10 +72,10 @@ class ColumnsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Columns  $columns
+     * @param  \App\Models\Values  $values
      * @return \Illuminate\Http\Response
      */
-    public function edit(Columns $columns)
+    public function edit(Values $values)
     {
         //
     }
@@ -80,11 +83,11 @@ class ColumnsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateColumnsRequest  $request
-     * @param  \App\Models\Columns  $columns
+     * @param  \App\Http\Requests\UpdateValuesRequest  $request
+     * @param  \App\Models\Values  $values
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateColumnsRequest $request, Columns $columns)
+    public function update(UpdateValuesRequest $request, Values $values)
     {
         //
     }
@@ -92,14 +95,11 @@ class ColumnsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Columns  $columns
+     * @param  \App\Models\Values  $values
      * @return \Illuminate\Http\Response
      */
-   
-
-    public function deleteColumn($id){
-        $column = Columns::find($id);
-        $column->delete();
-        return redirect()->back();
+    public function destroy(Values $values)
+    {
+        //
     }
 }

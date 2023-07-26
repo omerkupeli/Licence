@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to My Website</title>
+    <title>Lisans</title>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>Thank you for joining us!</p>
+    <h1>Lisansınızın Süresi Doluyor</h1>
+   
 </body>
 </html>

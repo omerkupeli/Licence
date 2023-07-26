@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ValueController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +39,14 @@ Route::post('/send-welcome-email', [MailController::class, 'sendWelcomeEmail']);
 
 Route::get('/home','App\Http\Controllers\LicenceController@getLicences');
 
+Route::get('/values/create', 'App\Http\Controllers\ValuesController@create')->name('values.create');
+Route::post('/values','App\Http\Controllers\ValuesController@store')->name('values.store');
+Route::get('/values','App\Http\Controllers\ValuesController@index')->name('values.index');
+
+Route::get('/column/create','App\Http\Controllers\ColumnsController@create')->name('column.create');
+Route::post('/column','App\Http\Controllers\ColumnsController@store')->name('column.store');
+
+Route::resource('columns', 'App\Http\Controllers\ColumnsController');
  
 Route::post('/createLicence', 'App\Http\Controllers\LicenceController@store')->name('licence.store');
 
@@ -47,6 +55,7 @@ Route::get('/licence/edit/{id}', 'App\Http\Controllers\LicenceController@editLic
 
 //licence.delete
 Route::delete('/licence/delete/{id}', 'App\Http\Controllers\LicenceController@deleteLicence')->name('licence.delete');
+Route::delete('/column/delete/{id}', 'App\Http\Controllers\ColumnsController@deleteColumn')->name('column.delete');
 
 //licence.update
 Route::put('/licence/update/{id}', 'App\Http\Controllers\LicenceController@updateLicence')->name('licence.update');

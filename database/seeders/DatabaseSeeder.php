@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\User::factory()->count(10)->create();
+        \App\Models\Columns::factory()->count(3)->create();
     }
 }

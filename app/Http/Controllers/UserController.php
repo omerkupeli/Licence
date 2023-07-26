@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Columns;
 
 class UserController extends Controller
 {
@@ -37,6 +38,7 @@ class UserController extends Controller
     public function getAllUsers()
     {
         $users = User::all();
-        return view('admin', compact('users'));
+        $columns = Columns::all();
+        return view('admin', compact('users' , 'columns'));
     }
 }

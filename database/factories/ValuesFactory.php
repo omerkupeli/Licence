@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Columns>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Values>
  */
-class ColumnsFactory extends Factory
+class ValuesFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,7 @@ class ColumnsFactory extends Factory
     public function definition()
     {
         return [
-            
-            'name' => $this->faker->name,
-            'type' => $this->faker->name,
-            'length' =>1,
+            //
         ];
     }
 }
