@@ -41,19 +41,14 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Lisans Adı</th>
-          <th scope="col">İsim</th>
-          <th scope="col">Email</th>
-          <th scope="col">Başlangıç</th>
-          <th scope="col">Bitiş</th>
-          <th scope="col">Süre (Ay)</th>
-          <th scope="col">Kalan Süre</th>
-          <th scope="col">Durum</th>
+          @foreach($columns as $column)
+            <th scope="col">{{$column->name}}</th>
+          @endforeach
           <th scope="col">Düzenle/Sil</th>
         </tr>
       </thead>
       <tbody id="mytable">
-        @foreach($licences as $licence)
+        <!-- @foreach($licences as $licence)
           <?php
             $sıra = $loop->index + 1;
             $kalansüre = strtotime($licence->bitiştarihi) - strtotime('now');
@@ -100,37 +95,67 @@
               </form>
             </td>
           </tr>
-        @endforeach
+        @endforeach -->
+        @foreach($values->groupBy('rowNumber') as $groupedValues)
+  <tr>
+    <th scope="row">{{ $loop->index + 1 }}</th>
+    @foreach($columns as $column)
+      @php
+        $valueForColumn = $groupedValues->where('column_id', $column->id)->first();
+      @endphp
+      <td>{{ $valueForColumn ? $valueForColumn->value : 'Girilmemiş' }}</td>
+    @endforeach
+    <td>
+      <a href="#" class="btn btn-primary edit-row">
+        <i class="fas fa-pencil-alt"></i>
+      </a>
+      <form action="#" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-danger">
+          <i class="fas fa-trash"></i>
+        </button>
+      </form>
+    </td>
+  </tr>
+@endforeach
+
       </tbody>
     </table>
   </div>
 
-  <div class="container">
-    <h2>Kayıt Formu</h2>
-    <form id="registrationForm" method="POST" action="/createLicence">
-      @csrf
-      <div class="form-row">
-        <div class="form-group">
-          <label for="licence_name">Lisans Adı</label>
-          <input id="licence_name" class="form-control" type="text" name="licence_name" placeholder="Lisans Adı" required>
+ 
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Yeni Bir Lisans Ekle</div>
+        <div class="card-body">
+          <form action="{{ route('values.store') }}" method="POST">
+            @csrf
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  @foreach($columns as $column)
+                    <th>{{ $column->name }}</th>
+                  @endforeach
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  @foreach($columns as $column)
+                    <td>
+                      <input type="text" name="values[{{ $column->id }}]" class="form-control" required>
+                    </td>
+                  @endforeach
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Lisansı Kaydet</button>
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>
-        </div>
-        <div class="form-group">
-          <label for="purchase_date">Alış Tarihi</label>
-          <input id="purchase_date" class="form-control" type="date" name="purchase_date" required>
-          </div><div class="form-group">
-          <label for="duration">Süre (Ay)</label>
-          <input id="duration" class="form-control" type="text" name="duration" required>
-        </div>  
       </div>
-      <button type="submit" class="btn2">Kaydet</button>
-    </form>
+    </div>
   </div>
-  <!-- send email -->
-  <div class="container">
     <h2>Email Gönder</h2>
     <form id="sendEmailForm" method="POST" action="/send-welcome-email">
       @csrf

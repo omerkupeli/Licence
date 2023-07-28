@@ -77,10 +77,7 @@ class ValuesController extends Controller
      * @param  \App\Models\Values  $values
      * @return \Illuminate\Http\Response
      */
-    public function edit(Values $values)
-    {
-        //
-    }
+  
 
     /**
      * Update the specified resource in storage.
@@ -89,11 +86,7 @@ class ValuesController extends Controller
      * @param  \App\Models\Values  $values
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateValuesRequest $request, Values $values)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -111,5 +104,25 @@ class ValuesController extends Controller
         $columns = Columns::all();
 
         return view('listdeneme', compact('values' , 'columns'));
+    }
+    public function edit(Values $value)
+    {
+        $columns = \App\Models\Column::all();
+
+        return view('edit-value', compact('value', 'columns'));
+    }
+
+    public function update(Request $request, Values $value)
+    {
+        $data = $request->validate([
+            'values' => 'required|array',
+            'values.*' => 'required|string',
+        ]);
+
+        foreach ($data['values'] as $column_id => $value) {
+            $value->where('column_id', $column_id)->update(['value' => $value]);
+        }
+
+        return redirect()->route('values.index')->with('success', 'Value updated successfully!');
     }
 }

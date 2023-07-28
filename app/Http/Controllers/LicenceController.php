@@ -7,6 +7,8 @@ use App\Http\Requests\StoreLicenceRequest;
 use App\Http\Requests\UpdateLicenceRequest;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\Columns;
+use App\Models\Values;
 
 use Illuminate\Http\Request;
 class LicenceController extends Controller
@@ -15,8 +17,12 @@ class LicenceController extends Controller
 {
     if (Auth::check()) {
         $user = Auth::user();
-        $licences = Licence::where('user_id', $user->id)->get();
-        return view('homePage', ['licences' => $licences]);
+        // $licences = Licence::where('user_id', $user->id)->get();
+        $licences = Licence::all();
+        $columns = Columns::all();
+        $values = Values::all();
+
+        return view('homePage', ['licences' => $licences , 'columns' => $columns, 'values' => $values]);
     }
 
    

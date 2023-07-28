@@ -62,6 +62,12 @@ Route::put('/licence/update/{id}', 'App\Http\Controllers\LicenceController@updat
 
 Route::get('/licenceDeneme', 'App\Http\Controllers\ValuesController@getValues')->name('licenceDeneme');
 
+// routes/web.php
+
+Route::get('/values/{value}/edit', 'ValueController@edit')->name('values.edit');
+Route::put('/values/{value}', 'ValueController@update')->name('values.update');
+
+
 
 
 
