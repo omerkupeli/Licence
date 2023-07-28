@@ -8,6 +8,9 @@
   <!-- İhtiyacınıza göre CSS dosyalarınızı buraya ekleyebilirsiniz -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="admin.css">
+  <!-- import bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
   <style>
     /* Reset CSS */
     * {
@@ -340,22 +343,44 @@
           <!-- Diğer ürünler için benzer satırlar ekleyebilirsiniz -->
         </tbody>
       </table>
-      <form action="{{ route('values.store') }}" method="POST">
-    @csrf
-    <label for="value">Value:</label>
-    <input type="text" name="value" required>
-
-    <label for="rowNumber">Row Number:</label>
-    <input type="number" name="rowNumber" required>
-
-    <label for="column_id">Column ID:</label>
-    <input type="number" name="column_id" required>
-
-    <button type="submit">Veri Oluştur</button>
-</form>
+      
 
 </div>
-
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Create New Value</div>
+        <div class="card-body">
+          <form action="{{ route('values.store') }}" method="POST">
+            @csrf
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  @foreach($columns as $column)
+                    <th>{{ $column->name }}</th>
+                  @endforeach
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  @foreach($columns as $column)
+                    <td>
+                      <input type="text" name="values[{{ $column->id }}]" class="form-control" required>
+                    </td>
+                  @endforeach
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Save Value</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     </section>
   </main>
 </body>

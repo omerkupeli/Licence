@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreValuesRequest;
 use App\Http\Requests\UpdateValuesRequest;
 use Illuminate\Http\Request;
+use App\Models\Columns;
 
 
 class ValuesController extends Controller
@@ -41,23 +42,24 @@ class ValuesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'value' => 'required|string',
-            'rowNumber' => 'required|integer',
-            'column_id' => 'required|integer',
+        $data = $request->validate([
+            'values' => 'required|array',
+            'values.*' => 'required|string',
         ]);
 
-        $value = new Values([
-            'value' => $request->input('value'),
-            'rowNumber' => $request->input('rowNumber'),
-            'column_id' => $request->input('column_id'),
-        ]);
+        // Otomatik olarak atanacak rowNumber değeri
+        $rowNumber = Values::max('rowNumber') + 1;
 
-        $value->save();
+        foreach ($data['values'] as $column_id => $value) {
+            Values::create([
+                'rowNumber' => $rowNumber,
+                'column_id' => $column_id,
+                'value' => $value,
+            ]);
+        }
 
-        return redirect()->route('values.index')->with('success', 'Veri başarıyla oluşturuldu.');
+        return redirect()->route('values.index')->with('success', 'Value created successfully!');
     }
-
     /**
      * Display the specified resource.
      *
@@ -101,5 +103,13 @@ class ValuesController extends Controller
     public function destroy(Values $values)
     {
         //
+    }
+
+    public function getValues()
+    {
+        $values = Values::all();
+        $columns = Columns::all();
+
+        return view('listdeneme', compact('values' , 'columns'));
     }
 }

@@ -60,6 +60,8 @@ Route::delete('/column/delete/{id}', 'App\Http\Controllers\ColumnsController@del
 //licence.update
 Route::put('/licence/update/{id}', 'App\Http\Controllers\LicenceController@updateLicence')->name('licence.update');
 
+Route::get('/licenceDeneme', 'App\Http\Controllers\ValuesController@getValues')->name('licenceDeneme');
+
 
 
 
